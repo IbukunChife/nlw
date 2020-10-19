@@ -1,0 +1,51 @@
+# criar a pasta de App de nome Web com os template typescript
+sudo yarn create react-app web --template typescript
+
+# Adicionar icons de terceiros no react
+sudo yarn add react-icons
+
+# Fazer o roteamento para outras paginas devermos usar react-router-dom
+sudo yarn add react-router-dom
+
+depois entar na pasta da applicação e criar o arquivo de rota(router)
+
+Para ver o que tem dentro da bibliotecas react-router-dom podermos baixar:
+sudo yarn add @types/react-router-dom -D
+
+Na rota é preciso colocar exact para que o BrowserRouter pode entender perfeitamente as rotas colocadas
+
+Usando o componente Link da biblioteca React-router-Dom podermos reaproveitar  os formato de htm e CSS 
+a fim de não carregar novamente para uma outra paginas.
+
+para utilizar o mapa vamos usar uma biblioteca chamada de Leaflet.
+Leaflet biblioteca de mapa com javaScript
+React-Leafleta integração do Leaflet com React
+vamos instalar os duas bibliotecas
+
+yarn add leaflet react-leaflet
+yarn add @types/react-leaflet -D
+
+usando a Carinho Map vamos passar para ele algumas informações 
+a amplitude longitudes aonde o mapa vai iniciar
+
+O TileLayer é um servidor aonde vou poder pegar as imagem do mapa
+não esquecer também de importar as configuração padrão do leaflet
+
+"leaflet/dist/leaflet.css"
+
+vocÊ também pode usar o mapbox.com ao invers de usar o leaflet
+
+Basta Criar uma conta depois copiar o token de acesso
+Salvar esse token dentro do arquivo de env da pasta e colocar o arquivo no git ignore
+também
+
+<TileLayer url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}/>
+
+
+
+############################################3
+CONECTAR O FRONT E O BACKEND
+########################################333###
+
+Baixar a biblioteca
+yarn add axios

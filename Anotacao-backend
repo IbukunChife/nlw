@@ -1,0 +1,88 @@
+# Criar a pasta
+ mkdir backend
+
+# Entrar na pasta
+cd backend
+
+# Exercutar no terminal 
+yarn init -y
+
+# Adicionando pacote em nossa applicação
+
+##express
+yarn add express
+yarn add @types/express -D
+
+# Criar uma pasta src dentro da pasta backend
+mkdir src
+
+# Dentro da pasta src criar um arquivo server.ts
+cd src
+touch server.ts
+
+No arquivo importar as bibliotecas
+
+#Para que node entende o TypeScript vamos instalar o TypeScript no ambiente de desenvolvimento
+yarn add typescript -D
+
+
+yarn tsc --init
+# vai criar um arquivo tsconfig aonde vamos apenas mudar
+es5 ----> es2017
+
+#Depois instalar o pacote  ts-node-dev no ambiente de desenvolvimento é um pacote para a gente conseguir Exercutar os arquivos typescript com node
+yarn add ts-node-dev -D
+
+#criar dentro do package.json
+  "scripts": {
+    "dev": "ts-node-dev src/server.ts"
+  },
+
+# Adicionar no objeto scripts dev 
+--transpile-only  [Tirar a checagem a respeito de erros não se preocupar com erros vai deixar o processo mais rapido]
+--ignore-watch node_modules [não vai ficar observando  ou deixar de ler as alterações dentro do arquivo node_modules]
+
+
+############Configurando nosso banco de dado#####################
+
+#instalando sqlite3 que é apenas uma extenção do banco no arquivo do nosso app.
+yarn add typeorm sqlite3
+
+Existe três formas  de usar o banco de dados [Driver Nativo , Query builder, ORM]. nesta caso estamos usando ORM
+
+Criar no src uma pasta de database e um arquivo ormconfig [onde vai ser colocado todas as configurações de conexão com o BD]
+dentro da pasta Database é criado um aquivo database.sqlite e um arquivo de connexao conection.ts logo em seguinte criarmos 
+a pasta de migração, que se encarrega de fazer automaticamente as alterações sobre as tabelas da base de dados 
+configurar o objeto scripts do package.json inserindo ["typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"]
+
+yarn typeorm // para setar o funçao cli como executador dos parametros de migração
+
+#Criar migração
+yarn typeorm migration:create -n create_orphanages [-n  nome da tabela ]
+
+#executar Migrations
+yarn typeorm migration:run
+
+#defazer a Migrations
+ yarn typeorm migration:revert
+
+Armazenar as Imagens
+Criar uma tabela de Imagens
+yarn typeorm migration:create -n create_images
+
+Vamos Instalar um pacote  dentro do nosso projeto que lida com uploade de Imagens
+yarn add multer
+yarn add @types/express -D
+
+Para A gente poder capturar os erros vamos instalar a bibliotecas express async-error
+yarn add express-async-errors
+
+
+Para fazer a validação dentro da nossa aplicação vamos instalar um modulo chamado de yup
+yarn add yup
+yarn add @types/yup -D
+
+
+Não devermos esquercer de instalar a bibliotecas cors [permite que a nossa API seja acessado de diferente dominios]
+yarn add cors
+yarn add @types/cors -D
